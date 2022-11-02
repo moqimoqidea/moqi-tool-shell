@@ -1,3 +1,3 @@
-# moqi-tool-shell
+# moqi tool shell
 
 practice shell.
