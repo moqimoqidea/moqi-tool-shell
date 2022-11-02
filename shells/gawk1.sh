@@ -18,3 +18,11 @@ gawk 'BEGIN {print "Hello World!"}'
 echo -e "\n"
 echo -e "gawk 5: BEGIN with print \$"
 gawk 'BEGIN {print "The data3 File Contents:"} {print $0}' data3.txt
+
+echo -e "\n"
+echo -e "gawk 5: BEGIN with print \$ with END"
+gawk 'BEGIN {print "The data3 File Contents:"} {print $0} END {print "End of File"}' data3.txt
+
+
+
+
