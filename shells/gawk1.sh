@@ -23,6 +23,14 @@ echo -e "\n"
 echo -e "gawk 5: BEGIN with print \$ with END"
 gawk 'BEGIN {print "The data3 File Contents:"} {print $0} END {print "End of File"}' data3.txt
 
+echo -e "\n"
+echo -e "gawk 6: -f print"
+gawk -F: -f script3.gawk etc_password.txt
+
+echo -e "\n"
+echo -e "gawk 7: -f print beautiful"
+gawk -F: -f script4.gawk etc_password.txt
+
 
 
 
