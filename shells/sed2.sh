@@ -82,5 +82,48 @@ echo -e "\n"
 echo -e "echo \"Test Line 2\" | gsed  'a\Test Line 1'"
 echo "Test Line 2" | gsed  'a\Test Line 1'
 
+echo -e "\n"
+echo -e "gsed '3i\This is an inserted line.' data6.txt"
+gsed '3i\This is an inserted line.' data6.txt
+
+echo -e "\n"
+echo -e "gsed '3a\This is an appended line.' data6.txt"
+gsed '3a\This is an appended line.' data6.txt
+
+echo -e "\n"
+echo -e "gsed '1i\This is an inserted line.\This is another inserted line.' data6.txt"
+gsed '1i\This is an inserted line.\nThis is another inserted line.' data6.txt
+
+echo -e "\n"
+echo -e "gsed '2c\This is a changed line of text.' data6.txt"
+gsed '2c\This is a changed line of text.' data6.txt
+
+echo -e "\n"
+echo -e "gsed '/have 6 Infinity Stones/c\Snap! This is changed line of text.' data8.txt"
+gsed '/have 6 Infinity Stones/c\Snap! This is changed line of text.' data8.txt
+
+# 可以在修改命令中使用地址区间，但结果未必如愿
+# sed编辑器会用指定的一行文本替换数据流中的两行文本，而不是逐一修改。
+echo -e "\n"
+echo -e "gsed '2,3c\This is a changed line of text.' data6.txt"
+gsed '2,3c\This is a changed line of text.' data6.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
