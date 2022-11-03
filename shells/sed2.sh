@@ -11,8 +11,13 @@ echo -e "\n"
 echo -e "sed 's/test/trial/g' data4.txt"
 sed 's/test/trial/g' data4.txt
 
+echo -e "\n"
+echo -e "sed -n 's/test/trial/p' data5.txt"
+sed -n 's/test/trial/p' data5.txt
 
-
+echo -e "\n"
+echo -e "sed 's/test/trial/w test.txt' data5.txt"
+sed 's/test/trial/w test.txt' data5.txt
 
 
 
