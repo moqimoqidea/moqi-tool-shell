@@ -108,6 +108,43 @@ echo -e "\n"
 echo -e "gsed '2,3c\This is a changed line of text.' data6.txt"
 gsed '2,3c\This is a changed line of text.' data6.txt
 
+echo -e "\n"
+echo -e "sed 'y/123/789/' data9.txt"
+sed 'y/123/789/' data9.txt
+
+echo -e "\n"
+echo -e "echo \"Test #1 of try #1.\" | sed 'y/123/678/'"
+echo "Test #1 of try #1." | sed 'y/123/678/'
+
+echo -e "\n"
+echo -e "echo \"this is a test\" | sed 'p'"
+echo "this is a test" | sed 'p'
+
+echo -e "\n"
+echo -e "sed -n '/3rd line/p' data6.txt"
+sed -n '/3rd line/p' data6.txt
+
+echo -e "\n"
+echo -e "sed -n '2,3p' data6.txt"
+sed -n '2,3p' data6.txt
+
+# ~/Code/moqi-tool/moqi-tool-shell/shells (master ✗) gsed -n '/3/{
+# p
+# s/line/test/p
+# }' data6.txt
+# This is the 3rd line.
+# This is the 3rd test.
+
+echo -e "\n"
+echo -e "sed '=' data1.txt"
+sed '=' data1.txt
+
+echo -e "\n"
+echo -e "sed -n 'l' data10.txt"
+sed -n 'l' data10.txt
+
+
+
 
 
 
