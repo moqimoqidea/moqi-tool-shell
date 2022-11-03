@@ -72,6 +72,15 @@ echo -e "\n"
 echo -e "sed '/3/,/5/d' data7.txt"
 sed '/3/,/5/d' data7.txt
 
+# gsed: brew install gnu-sed
+# mac os sed is different by linux sed.
+echo -e "\n"
+echo -e "echo \"Test Line 2\" | gsed  'i\Test Line 1'"
+echo "Test Line 2" | gsed  'i\Test Line 1'
+
+echo -e "\n"
+echo -e "echo \"Test Line 2\" | gsed  'a\Test Line 1'"
+echo "Test Line 2" | gsed  'a\Test Line 1'
 
 
 
