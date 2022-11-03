@@ -19,6 +19,10 @@ echo -e "\n"
 echo -e "sed 's/test/trial/w test.txt' data5.txt"
 sed 's/test/trial/w test.txt' data5.txt
 
+echo -e "\n"
+echo -e "$ sed 's!/bin/bash!/bin/csh!' etc_password.txt | tail -1"
+sed 's!/bin/bash!/bin/csh!' etc_password.txt | tail -1
+
 
 
 
