@@ -143,18 +143,21 @@ echo -e "\n"
 echo -e "sed -n 'l' data10.txt"
 sed -n 'l' data10.txt
 
+echo -e "\n"
+echo -e "sed -n '/Browncoat/w Browncoats.txt' data12.txt"
+sed -n '/Browncoat/w Browncoats.txt' data12.txt
 
+echo -e "\n"
+echo -e "sed '3r data13.txt' data6.txt"
+sed '3r data13.txt' data6.txt
 
+echo -e "\n"
+echo -e "sed '/number 2/r data13.txt' data6.txt"
+sed '/number 2/r data13.txt' data6.txt
 
-
-
-
-
-
-
-
-
-
+echo -e "\n"
+echo -e "sed '$r data13.txt' data6.txt"
+sed '$r data13.txt' data6.txt
 
 
 
