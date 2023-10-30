@@ -11,11 +11,16 @@ max_failures=10
 opt_dir="/var/services/homes/moqi/shell/auto-shutdown"
 
 switch_txt="$opt_dir/switch.txt"
-ping_log="$opt_dir/ping.log"
-result_log="$opt_dir/result.log"
 
 # Initialize failure count
 failure_count=0
+
+# Get today's date in YYYYMMDD format
+today=$(date +%Y%m%d)
+
+# Log filenames with date-stamped
+ping_log="$opt_dir/ping-$today.log"
+result_log="$opt_dir/result-$today.log"
 
 # Log the start time
 current_time=$(date +%Y/%m/%d/%H:%M:%S)
@@ -27,6 +32,17 @@ while IFS= read -r switch_status; do
 
     # Check the switch status
     while [ "$switch_status" -eq 1 ]; do
+        # Check if we've crossed into a new day
+        new_day=$(date +%Y%m%d)
+        if [ "$new_day" != "$today" ]; then
+            # Log a message indicating the end of the day's execution
+            current_time=$(date +%Y/%m/%d/%H:%M:%S)
+            echo "$current_time Execution for today ($today) is complete. Exiting script." >> "$result_log"
+
+            # Exit the script
+            exit 0
+        fi
+
         # Ping the router
         if ping -c 4 "$router_ip" > "$ping_log"; then
             # Ping succeeded
@@ -51,4 +67,3 @@ while IFS= read -r switch_status; do
         sleep "$check_interval"
     done
 done < "$switch_txt"
-
