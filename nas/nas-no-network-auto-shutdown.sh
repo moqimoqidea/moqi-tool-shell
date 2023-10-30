@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# source: https://post.smzdm.com/p/aoowpxq7/
+# after gpt tuning
+
 # Configuration
 router_ip="192.168.1.1"
 check_interval=60
