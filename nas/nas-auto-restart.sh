@@ -58,7 +58,6 @@ while true; do
             current_time=$(get_current_time)
             echo "$current_time Ping to $router_ip succeeded" >> "$result_log"
             ((success_count++))
-            failure_count=0
         else
             # Ping failed
             ((failure_count++))
@@ -73,8 +72,13 @@ while true; do
 
         # Check if the failure count has reached the limit and success count has reached the minimum
         if [ "$failure_count" -ge "$min_failures" ] && [ "$success_count" -ge "$min_successes" ]; then
-            echo "$current_time Conditions met for NAS restart" >> "$result_log"
-            # Restart NAS
+
+            failure_count=0
+            # echo log set failure_count reset to 0.
+            echo "$current_time reset failure_count is 0." >> "$result_log"
+
+            echo "$current_time conditions met for nas restart" >> "$result_log"
+            # Restart nas
             # synoshutdown --reboot
         fi
     fi
