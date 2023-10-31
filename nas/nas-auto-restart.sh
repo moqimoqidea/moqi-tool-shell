@@ -57,9 +57,9 @@ while IFS= read -r switch_status; do
 
             # Check if the failure count has reached the limit
             if [ "$failure_count" -gt "$max_failures" ]; then
-                echo "$current_time Maximum failures reached - Shutting down" >> "$result_log"
-                # Uncomment the next line to enable shutdown
-                shutdown -h now
+                echo "$current_time Maximum failures reached - Restarting NAS" >> "$result_log"
+                # Restart NAS
+                synoshutdown --reboot
             fi
         fi
 
