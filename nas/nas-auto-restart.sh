@@ -30,16 +30,17 @@ get_current_time() {
 current_time=$(get_current_time)
 echo "$current_time Starting the script" >> "$result_log"
 
-# Read the first line from the ping address file
-router_ip=$(head -n 1 "$ping_address_txt")
-echo "Ping address is $router_ip" >> "$result_log"
+while true; do
+    # Read the first line from the ping address file
+    router_ip=$(head -n 1 "$ping_address_txt")
+    echo "Ping address is $router_ip" >> "$result_log"
 
-# Read each line from the switch file
-while IFS= read -r switch_status; do
+    # Read the first line from the switch file
+    switch_status=$(head -n 1 "$switch_txt")
     echo "Switch status is $switch_status" >> "$result_log"
 
     # Check the switch status
-    while [ "$switch_status" -eq 1 ]; do
+    if [ "$switch_status" -eq 1 ]; then
         # Check if we've crossed into a new day
         new_day=$(date +%Y%m%d)
         if [ "$new_day" != "$today" ]; then
@@ -76,8 +77,8 @@ while IFS= read -r switch_status; do
             # Restart NAS
             # synoshutdown --reboot
         fi
+    fi
 
-        # Wait for the specified interval before the next check
-        sleep "$check_interval"
-    done
-done < "$switch_txt"
+    # Wait for the specified interval before the next check
+    sleep "$check_interval"
+done
