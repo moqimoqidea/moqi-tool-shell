@@ -7,8 +7,8 @@ min_successes=10
 
 opt_dir="/var/services/homes/moqi/shell/auto-opt"
 
-switch_txt="$opt_dir/switch.txt"
-ping_address_txt="$opt_dir/ping_address.txt"
+switch_txt="$opt_dir/data/switch.txt"
+ping_address_txt="$opt_dir/data/ping_address.txt"
 
 # Initialize failure and success counts
 failure_count=0
@@ -18,8 +18,8 @@ success_count=0
 today=$(date +%Y%m%d)
 
 # Log filenames with date-stamped
-ping_log="$opt_dir/ping-$today.log"
-result_log="$opt_dir/result-$today.log"
+ping_log="$opt_dir/log/ping-$today.log"
+result_log="$opt_dir/log/result-$today.log"
 
 # Function to get current time
 get_current_time() {
