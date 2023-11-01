@@ -1,14 +1,27 @@
 #!/bin/sh
 
-# Configuration
-check_interval=60
-min_failures=10
-min_successes=10
+# functions
 
-opt_dir="/var/services/homes/moqi/shell/auto-opt"
+# Get config value
+get_config_value() {
+    # $1 = config file
+    # $2 = key
+    echo $(cat "$1" | jq -r ".$2")
+}
 
-switch_txt="$opt_dir/data/switch.txt"
-ping_address_txt="$opt_dir/data/ping_address.txt"
+# Function to get current time
+get_current_time() {
+    echo $(date +%Y-%m-%d\ %H:%M:%S)
+}
+
+# dir and json file
+opt_dir="/Users/moqi/Downloads/nas-opt"
+# opt_dir="/var/services/homes/moqi/shell/auto-opt"
+
+# Log filenames with date-stamped
+log_dir="$opt_dir/log"
+ping_log="$log_dir/ping-$today.log"
+result_log="$log_dir/result-$today.log"
 
 # Initialize failure and success counts
 failure_count=0
@@ -17,27 +30,25 @@ success_count=0
 # Get today's date in YYYYMMDD format
 today=$(date +%Y%m%d)
 
-# Log filenames with date-stamped
-ping_log="$opt_dir/log/ping-$today.log"
-result_log="$opt_dir/log/result-$today.log"
-
-# Function to get current time
-get_current_time() {
-    echo $(date +%Y-%m-%d\ %H:%M:%S)
-}
-
 # Log the start time
 current_time=$(get_current_time)
 echo "$current_time Starting the script" >> "$result_log"
 
-while true; do
-    # Read the first line from the ping address file
-    router_ip=$(head -n 1 "$ping_address_txt")
-    echo "Ping address is $router_ip" >> "$result_log"
+# Configuration
+data_json="$opt_dir/data/nas-auto-opt-data.json"
 
-    # Read the first line from the switch file
-    switch_status=$(head -n 1 "$switch_txt")
-    echo "Switch status is $switch_status" >> "$result_log"
+check_interval=$(get_config_value("$data_json", "check_interval"))
+min_failures=$(get_config_value("$data_json", "min_failures"))
+min_successes=$(get_config_value("$data_json", "min_successes"))
+echo "Init: check_interval is $check_interval, min_failures is $min_failures, min_successes is $min_successes" >> "$result_log"
+
+while true; do
+    check_interval=$(get_config_value("$data_json", "check_interval"))
+    min_failures=$(get_config_value("$data_json", "min_failures"))
+    min_successes=$(get_config_value("$data_json", "min_successes"))
+    router_ip=$(get_config_value("$data_json", "router_ip"))
+    switch_status=$(get_config_value("$data_json", "switch_status"))
+    echo "check_interval is $check_interval, min_failures is $min_failures, min_successes is $min_successes, router_ip is $router_ip, switch_status is $switch_status" >> "$result_log"
 
     # Check the switch status
     if [ "$switch_status" -eq 1 ]; then
