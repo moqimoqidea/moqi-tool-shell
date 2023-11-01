@@ -18,8 +18,8 @@ get_current_time() {
 
 
 # dir and json file
-opt_dir="/Users/moqi/Downloads/nas-opt"
-# opt_dir="/var/services/homes/moqi/shell/auto-opt"
+# opt_dir="/Users/moqi/Downloads/nas-opt"
+opt_dir="/var/services/homes/moqi/shell/auto-opt"
 
 # Get today's date in YYYYMMDD format
 today=$(date +%Y%m%d)
@@ -89,7 +89,7 @@ while true; do
 
             failure_count=0
             # echo log set failure_count reset to 0.
-            echo "$current_time reset failure_count is 0." >> "$result_log"
+            echo "$current_time reset failure_count to 0." >> "$result_log"
 
             echo "$current_time conditions met for nas restart" >> "$result_log"
             # Restart nas
